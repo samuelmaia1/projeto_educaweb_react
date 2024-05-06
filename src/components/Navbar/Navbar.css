@@ -1,0 +1,11 @@
+.navbar{
+    display: flex;
+    gap: 24px;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Inter';
+}
+
+.navbar-link:hover{
+    color: #3e66f2;
+}

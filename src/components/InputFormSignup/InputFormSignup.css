@@ -1,0 +1,6 @@
+.container-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    width: 20%;
+}

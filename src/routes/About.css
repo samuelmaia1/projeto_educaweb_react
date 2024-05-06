@@ -1,0 +1,33 @@
+.main-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    font-size: 36px;
+}
+
+section{
+    margin-bottom: 24px;
+}
+
+.section-title{
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.section-text{
+    margin-bottom: 12px;
+}
+
+.container-social{
+    display: flex;
+    gap: 32px;
+}
+
+
+.link-social{
+    text-decoration: underline;
+}

@@ -1,0 +1,29 @@
+form{
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+    margin: 48px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.form-title{
+    font-size: 30px;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.container-options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 36px;
+}
+
+.options-title{
+    text-align: center;
+    font-size: 32px;
+}

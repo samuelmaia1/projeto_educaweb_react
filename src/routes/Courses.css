@@ -1,0 +1,14 @@
+.title-courses-page{
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.container-card-courses{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}

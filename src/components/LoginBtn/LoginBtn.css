@@ -1,0 +1,16 @@
+.login-btn{
+    border: 2px solid #13182A;
+    border-radius: 5px;
+    width: 132px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+.login-btn:hover{
+    color: #F8FAEC;
+    background-image: linear-gradient(43deg, #1232A4 0%, #8D4CF9 100%);
+    transition: 1s;
+}
