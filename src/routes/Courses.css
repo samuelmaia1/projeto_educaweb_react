@@ -12,3 +12,11 @@
     flex-wrap: wrap;
     margin-top: 32px;
 }
+
+.container-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+}

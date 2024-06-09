@@ -8,13 +8,6 @@
       "id": "2"
     },
     {
-      "firstname": "Samuel",
-      "lastname": "De Oliveira",
-      "email": "smaia190500@gmail.com",
-      "password": "Samuca1905!",
-      "id": "3"
-    },
-    {
       "firstname": "Sara",
       "lastname": "Isabel",
       "email": "saramaia1008@gmail.com",
@@ -52,6 +45,62 @@
       "email": "joao@email.com",
       "password": "123456",
       "description": ""
+    },
+    {
+      "id": "fb32",
+      "firstname": "Silas",
+      "lastname": "Daniel",
+      "email": "silasmaia.sm8@gmail.com",
+      "password": "123456",
+      "description": ""
+    },
+    {
+      "id": "730e",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "smaia9@outlook.com",
+      "password": "123456",
+      "description": ""
+    },
+    {
+      "id": "700b",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "saramaia1008@gmail.com",
+      "password": "123456",
+      "description": ""
+    },
+    {
+      "id": "7a5a",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "rogeria123@gmail.com",
+      "password": "123456",
+      "description": ""
+    },
+    {
+      "id": "21bc",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "smaia9@outlook.com",
+      "password": "Samuca1905!",
+      "description": ""
+    },
+    {
+      "id": "70c5",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "smaia9@outlook.com",
+      "password": "Samuca1905!",
+      "description": ""
+    },
+    {
+      "id": "7679",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "smaia190500@gmail.com",
+      "password": "Samuca1905!",
+      "description": ""
     }
   ],
   "teachers": [
@@ -78,6 +127,14 @@
       "skills": ".NET",
       "password": "123456",
       "id": "3"
+    },
+    {
+      "id": "267f",
+      "firstname": "Samuel",
+      "lastname": "De Oliveira",
+      "email": "smaia9@outlook.com",
+      "skills": "javascript",
+      "password": "123456"
     }
   ],
   "companies": [
@@ -92,22 +149,24 @@
   ],
   "courses": [
     {
-      "name": "Curso de JavaScript",
+      "name": "JavaScript Moderno",
       "description": "Aprenda JavaScript",
+      "link": "https://www.youtube.com/watch?v=FdePtO5JSd0&list=PLHz_AreHm4dlsK3Nr9GVvXCbpQyHQl1o1&index=6",
       "id": "08ab"
     },
     {
-      "name": "Curso de JavaScript",
+      "name": "JavaScript avançado",
       "description": "Aprenda JavaScript",
       "id": "3696"
     },
     {
-      "name": "Curso de JavaScript",
-      "description": "Aprenda JavaScript",
+      "name": "HTML e CSS",
+      "description": "JavaScript",
+      "link": "https://www.youtube.com/watch?v=FdePtO5JSd0&list=PLHz_AreHm4dlsK3Nr9GVvXCbpQyHQl1o1&index=6",
       "id": "7dd6"
     },
     {
-      "name": "Curso de JavaScript",
+      "name": "React",
       "description": "Aprenda JavaScript",
       "id": "89fc"
     },
@@ -117,7 +176,7 @@
       "id": "4e59"
     },
     {
-      "name": "Curso de JavaScript",
+      "name": "Flutter",
       "description": "Aprenda JavaScript",
       "id": "d625"
     }

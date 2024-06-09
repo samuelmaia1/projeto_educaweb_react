@@ -12,6 +12,7 @@ import Courses from './routes/Courses.jsx'
 import SignupUser from './routes/SignupUser.jsx'
 import SignupTeacher from './routes/SignupTeacher.jsx'
 import SignupCompany from './routes/SignupCompany.jsx'
+import CoursePage from './routes/CoursePage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: 'cursos',
     element: <Courses/>
+  },
+  {
+    path: 'cursos/curso',
+    element: <CoursePage/>
   }
 
 ])
