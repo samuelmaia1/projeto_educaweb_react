@@ -37,3 +37,6 @@ npm run dev
 npm run server
 ```
 5. Agora é só navegar!
+
+## Website direto:
+[EducaWeb](https://educaweb-nine.vercel.app)
