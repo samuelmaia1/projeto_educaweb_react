@@ -6,17 +6,19 @@ import Navbar from '../components/Navbar/Navbar'
 import LoginBtn from '../components/LoginBtn/LoginBtn'
 import InputFormSignup from '../components/InputFormSignup/InputFormSignup'
 import {Button} from '@chakra-ui/react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 export default () => {
 
-    const url = 'http://localhost:3000/users'
+    const navigate = useNavigate()
 
-    const [loginEmail , setLoginEmail] = useState('')
+    const url = 'http://localhost:8081/user/validate'
+
+    const [loginUserName , setLoginUserName] = useState('')
     const [loginPass , setLoginPass] = useState('')
 
-    const handleLoginEmail = (e) => {
-        setLoginEmail(e.target.value)
+    const handleLoginUserName = (e) => {
+        setLoginUserName(e.target.value)
     }
 
     const handleLoginPass = (e) => {
@@ -26,16 +28,11 @@ export default () => {
     const loginSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await axios.get(url)
-        const users = response.data
+        const response = await fetch(`${url}?login=${loginUserName}&password=${loginPass}`)
 
-        console.log(loginPass)
-        
-        users.forEach((user) => {
-            if (loginEmail == user.email && loginPass == user.password){
-                alert('Acesso liberado')
-            }
-        })
+        if (response.json()){
+            navigate('/sobre')
+        }
         
     }
 
@@ -50,7 +47,7 @@ export default () => {
 
             <form onSubmit={loginSubmit}>
                 <h2 className='form-title'>Entrar</h2>
-                <InputFormSignup name='email' placeholder='fulano@email.com' label='E-mail: ' onChange={handleLoginEmail}/> 
+                <InputFormSignup name='login' placeholder='fulanosilva' label='Nome de usuário: ' onChange={handleLoginUserName}/> 
                 <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handleLoginPass}/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Entrar
