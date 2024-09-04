@@ -48,7 +48,7 @@ export default () => {
             <form onSubmit={loginSubmit}>
                 <h2 className='form-title'>Entrar</h2>
                 <InputFormSignup name='login' placeholder='fulanosilva' label='Nome de usuário: ' onChange={handleLoginUserName}/> 
-                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handleLoginPass}/>
+                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handleLoginPass} type="password"/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Entrar
                 </Button>

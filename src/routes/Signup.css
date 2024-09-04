@@ -27,3 +27,20 @@ form{
     text-align: center;
     font-size: 32px;
 }
+
+.div-cep{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+}
+
+.cep{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center
+}

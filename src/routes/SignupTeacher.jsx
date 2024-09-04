@@ -10,30 +10,20 @@ import {Link} from 'react-router-dom'
 
 export default () => {
 
-    const url = 'http://localhost:3000/teachers'
+    const url = 'http://localhost:8081/api/instructor/register'
 
     const [firstname, setFirstname] = useState('')
-    const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
-    const [skills, setSkills] = useState('')
     const [password, setPassword] = useState('')
 
     const handleFirstname = (e) => {
         setFirstname(e.target.value)
     }      
-
-    const handleLastname = (e) => {
-        setLastname(e.target.value)
-    }
-        
+   
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }       
 
-    const handleSkills = (e) => {
-        setSkills(e.target.value)
-    }
-        
     const handlePassword = (e) => {
         setPassword(e.target.value)
     }
@@ -41,13 +31,13 @@ export default () => {
     const formSubmit = async (e) => {
         e.preventDefault()
 
-        await axios.post(url, {
-            firstname,
-            lastname,   
+        const response = await axios.post(url, {
+            name: firstname,   
             email,
-            skills,
             password,
         })
+
+        console.log(response.data)
     }
 
     return (
@@ -61,18 +51,22 @@ export default () => {
             <h2 className='options-title'>Como deseja se cadastrar?</h2>
 
             <div className="container-options">
-                <Link to='/cadastro/aluno'><Button>Aluno</Button></Link>
-                <Link to='/cadastro/professor'><Button>Professor</Button></Link>
-                <Link to='/cadastro/empresa'><Button>Empresa</Button></Link>
+                <Link to='/cadastro/aluno'>
+                    <Button>Aluno</Button>
+                </Link>
+                <Link to='/cadastro/professor'>
+                    <Button>Professor</Button>
+                </Link>
+                <Link to='/cadastro/empresa'>
+                    <Button>Empresa</Button>
+                </Link>
             </div>
 
             <form onSubmit={formSubmit}>
                 <h2 className='form-title'>Cadastre-se</h2>
-                <InputFormSignup name='firstname' placeholder='Fulano' label='Nome: ' onChange={handleFirstname}/> 
-                <InputFormSignup name='lastname' placeholder='Da Silva' label='Sobrenome: ' onChange={handleLastname}/> 
-                <InputFormSignup name='email' placeholder='fulano@email.com' label='E-mail: ' onChange={handleEmail}/>
-                <InputFormSignup name='skills' placeholder='Banco de dados SQL, Python...' label='Habilidades: ' onChange={handleSkills}/>
-                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handlePassword}/>
+                <InputFormSignup name='firstname' placeholder='Fulano' label='Nome: ' onChange={handleFirstname} value={firstname}/> 
+                <InputFormSignup name='email' placeholder='fulano@email.com' label='E-mail: ' onChange={handleEmail} value={email}/>
+                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handlePassword} value={password} type="password"/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Cadastrar
                 </Button>

@@ -10,28 +10,47 @@ import {Link} from 'react-router-dom'
 
 export default () => {
 
-    const url = 'http://localhost:3000/companies'
+    const url = 'http://localhost:8081/api/services/cep/'
 
     const [companyName, setCompanyName] = useState('')
-    const [branch, setBranch] = useState('')
+    const [state, setState] = useState('')
+    const [city, setCity] = useState('')
+    const [neighborhood, setNeighborhood] = useState('')
+    const [address, setAddress] = useState('')
     const [email, setEmail] = useState('')
-    const [cnpj, setCnpj] = useState('')
+    const [cep, setCep] = useState('')
     const [password, setPassword] = useState('')
+    const [loadingCep, setLoadingCep] = useState(false)
 
     function handleCompanyName(e) {
         setCompanyName(e.target.value)
     }
 
-    function handleBranch(e) {
-        setBranch(e.target.value)
+    function handleState(e) {
+        setState(e.target.value)
+    }
+
+    function handleCity(e){
+        setCity(e.target.value)
+    }
+
+    function handleNeighborhood(e){
+        setNeighborhood(e.target.value)
+    }
+
+    function handleAddress(e){
+        setAddress(e.target.value)
     }
 
     function handleEmail(e) {
         setEmail(e.target.value)
     }
 
-    function handleCnpj(e) {
-        setCnpj(e.target.value)
+    function handleCep(e) {
+        const inputValue = e.target.value
+        if (inputValue.length <= 8){
+            setCep(e.target.value)
+        }
     }
 
     function handlePassword(e) {
@@ -41,13 +60,24 @@ export default () => {
     async function formSubmit(e) {
         e.preventDefault()
 
-        await axios.post(url, {
-            companyName,
-            branch,
-            email,
-            cnpj,
-            password
-        })
+        try {
+            const response = await axios.get(url + cep)
+
+            const data = response.data
+
+            if (response.status === 200){
+                setState(data.estado)
+                setAddress(data.logradouro)
+                setCity(data.localidade)
+                setNeighborhood(data.bairro)
+            }
+        } catch (error) {
+            if (error.response.status === 404){
+                alert(`CEP ${cep} não encontrado.`)
+            }
+        }
+
+        console.log(data)
     }
     return (
         <>
@@ -67,11 +97,19 @@ export default () => {
 
             <form onSubmit={formSubmit}>
                 <h2 className='form-title'>Cadastre-se</h2>
-                <InputFormSignup name='companyname' placeholder='Minha Empresa Ltda.' label='Nome da empresa: ' onChange={handleCompanyName}/> 
-                <InputFormSignup name='branch' placeholder='Tecnologia' label='Ramo: ' onChange={handleBranch}/> 
-                <InputFormSignup name='email' placeholder='minhaempresa@email.com' label='E-mail: ' onChange={handleEmail}/>
-                <InputFormSignup name='cnpj' placeholder='XX. XXX. XXX/0001-XX' label='CNPJ: ' onChange={handleCnpj}/>
-                <InputFormSignup name='password' placeholder='minhasenha123' label='Senha: ' onChange={handlePassword}/>
+                <InputFormSignup name='companyname' placeholder='Minha Empresa Ltda.' label='Nome da empresa: ' onChange={handleCompanyName} value={companyName}/> 
+                <InputFormSignup name='email' placeholder='minhaempresa@email.com' label='E-mail: ' onChange={handleEmail} value={email}/>
+                <div className="div-cep">
+                    <div className="cep">
+                        <InputFormSignup name='cep' placeholder='xxxxxxxx' label='CEP (Apenas números): ' onChange={handleCep} type="number" value={cep}/>
+                        <Button colorScheme='green'>Validar CEP</Button>
+                    </div>
+                </div>
+                <InputFormSignup name='state' placeholder='São Paulo' label='Estado: ' onChange={handleState} value={state}/> 
+                <InputFormSignup name='city' placeholder='São Paulo' label='Cidade: ' onChange={handleCity} value={city}/> 
+                <InputFormSignup name='neighborhood' placeholder='Sé' label='Bairro: ' onChange={handleNeighborhood} value={neighborhood}/> 
+                <InputFormSignup name='address' placeholder='Praça da sé' label='Rua: ' onChange={handleAddress} value={address}/> 
+                <InputFormSignup name='password' placeholder='minhasenha123' label='Senha: ' onChange={handlePassword} type="password" value={password}/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Cadastrar
                 </Button>

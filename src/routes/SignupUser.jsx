@@ -88,7 +88,7 @@ export default () => {
                 <InputFormSignup name='login' placeholder='fulanosilva' label='Nome de usuário: ' onChange={handleLogin} value={login}/> 
                 <InputFormSignup name='firstName' placeholder='Fulano' label='Nome: ' onChange={handleName} value={firstName}/>
                 <InputFormSignup name='lastName' placeholder='Silva' label='Sobrenome: ' onChange={handleLastName} value={lastName}/>
-                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handlePassword} value={password}/>
+                <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handlePassword} value={password} type="password"/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Cadastrar
                 </Button>
