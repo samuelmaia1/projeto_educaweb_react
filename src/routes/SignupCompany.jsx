@@ -7,10 +7,13 @@ import {Button} from '@chakra-ui/react'
 import axios from 'axios'
 import './Signup.css'
 import {Link} from 'react-router-dom'
+import { Spinner } from '../components/Spinner/Spinner'
 
 export default () => {
 
     const url = 'http://localhost:8081/api/services/cep/'
+
+    const urlRegister = 'http://localhost:8081/api/company/register'
 
     const [companyName, setCompanyName] = useState('')
     const [state, setState] = useState('')
@@ -57,13 +60,15 @@ export default () => {
         setPassword(e.target.value)
     }
 
-    async function formSubmit(e) {
+    async function validCep(e) {
         e.preventDefault()
-
+        setLoadingCep(true)
         try {
             const response = await axios.get(url + cep)
 
             const data = response.data
+
+            console.log(response.data)
 
             if (response.status === 200){
                 setState(data.estado)
@@ -71,13 +76,27 @@ export default () => {
                 setCity(data.localidade)
                 setNeighborhood(data.bairro)
             }
+
+            setLoadingCep(false)
         } catch (error) {
             if (error.response.status === 404){
                 alert(`CEP ${cep} não encontrado.`)
             }
+            setLoadingCep(false)
         }
+    }
 
-        console.log(data)
+    async function formSubmit(){
+        const response = await axios.post(urlRegister, {
+            name: companyName,
+            email: email,
+            state: state,
+            city: city,
+            address: address,
+            password: password
+        })
+
+
     }
     return (
         <>
@@ -102,7 +121,9 @@ export default () => {
                 <div className="div-cep">
                     <div className="cep">
                         <InputFormSignup name='cep' placeholder='xxxxxxxx' label='CEP (Apenas números): ' onChange={handleCep} type="number" value={cep}/>
-                        <Button colorScheme='green'>Validar CEP</Button>
+                        <Button colorScheme='green' onClick={validCep}>Validar CEP</Button>
+                        {loadingCep? <Spinner/> : <></> }
+                        
                     </div>
                 </div>
                 <InputFormSignup name='state' placeholder='São Paulo' label='Estado: ' onChange={handleState} value={state}/> 
