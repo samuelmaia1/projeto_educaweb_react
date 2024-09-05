@@ -86,7 +86,9 @@ export default () => {
         }
     }
 
-    async function formSubmit(){
+    async function formSubmit(e){
+        e.preventDefault()
+        console.log(city)
         const response = await axios.post(urlRegister, {
             name: companyName,
             email: email,
@@ -96,7 +98,9 @@ export default () => {
             password: password
         })
 
-
+        if (response.status === 201) {
+            alert('Empresa criada' + response.data)
+        }
     }
     return (
         <>
