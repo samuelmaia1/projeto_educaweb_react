@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import axios from 'axios'
 import Logo from './components/Logo/Logo.jsx'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import Navbar from './components/Navbar/Navbar.jsx'
@@ -8,18 +9,55 @@ import GradientText from './components/GradientText/GradientText.jsx'
 import Card from './components/Card/Card.jsx'
 import BtnLink from './components/BtnLink/BtnLink.jsx'
 import { Box } from '@chakra-ui/react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import AccBtn from './components/AccBtn/AccBtn.jsx'
 
 function App() {
 
-  const url = ''
+  const url = import.meta.env.VITE_API_URL
+
+  const [validToken, setValidToken] = useState(false)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+
+    const validToken = async() => {
+      try {
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+          return 
+        }
+
+        const response = await axios.post(url + 'auth/validatetoken',{}, {
+          headers: {
+              'Authorization': `Bearer ${token}` // ou qualquer formato necessário para o token
+          }
+        })
+
+        console.log(response)
+
+        if (response.status == 200){
+          setValidToken(true)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    validToken()
+
+  }, [])
 
   return (
     <>
       <header className='header'>
         <Logo/>
         <Navbar/>
-        <LoginBtn/>
+        {
+          !validToken? <LoginBtn/> : <AccBtn userName='Minha conta'></AccBtn>
+        }
       </header>
 
       <main className="main-content">
@@ -37,14 +75,25 @@ function App() {
           <Card title='SQL' text='Armazene, trate e gerencie grandes volumes de dados, criando DataBases SQL para aplicações.' textbtn='Conhecer curso'/> 
         </Box>
 
-        <Box display='flex' gap='100' justifyContent='center' marginTop='20'>
-          <Link to='/entrar'>
-            <BtnLink textbtn='Entrar'/>
-          </Link>
-          <Link to='/cadastro'>
-            <BtnLink textbtn='Cadastre-se'/>
-          </Link>
-        </Box>
+        {
+          !validToken? (
+            <Box display='flex' gap='100' justifyContent='center' marginTop='20'>
+              <Link to='/entrar'>
+                <BtnLink textbtn='Entrar'/>
+              </Link>
+              <Link to='/cadastro'>
+                <BtnLink textbtn='Cadastre-se'/>
+              </Link>
+            </Box>
+          ) : (
+            <Box display='flex' gap='100' justifyContent='center' marginTop='20'>
+              <BtnLink textbtn='Acessar cursos'></BtnLink>
+              <BtnLink textbtn='Acessar vagas'></BtnLink>
+            </Box>
+          )
+        }
+
+        
       </main>
     </>
   )

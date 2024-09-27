@@ -14,7 +14,7 @@ export default ({title, text, textbtn, courseId}) => {
                 <CardBody display='flex' justifyContent='center' alignItems='center' flexDir='column'>
                     <p>{text}</p>
                     <Link to={urlDestino}>
-                        <Button size='md' className='card-btn' marginTop='5'>{textbtn}</Button>
+                        <Button size='md' marginTop='5' colorScheme='teal'>{textbtn}</Button>
                     </Link>
                 </CardBody>
 

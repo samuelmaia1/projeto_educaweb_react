@@ -10,7 +10,7 @@ import './Signup.css'
 import {Link} from 'react-router-dom'
 export default () => {
 
-    const url = 'http://localhost:8081/api/student/register'
+    const url = import.meta.env.VITE_API_LOCAL_URL
 
     const navigate = useNavigate()
 
@@ -43,7 +43,7 @@ export default () => {
 
     const formSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch(url, {
+        const response = await fetch(url + 'student/register', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

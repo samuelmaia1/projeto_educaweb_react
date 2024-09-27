@@ -9,16 +9,24 @@ import './Courses.css'
 import InputFormSignup from "../components/InputFormSignup/InputFormSignup"
 import { Button } from "@chakra-ui/react"
 import { ButtonGroup } from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom"
+import {Spinner} from "../components/Spinner/Spinner"
 
 export default () => {
 
-    const url = 'http://localhost:3000/courses'
+    const navigate = useNavigate()
+
+    const url = import.meta.env.VITE_API_URL
 
     const [pesquisa, setPesquisa] = useState('')
 
     const [filtered, setFiltered] = useState(false)
 
     const [filteredList, setFilteredList] = useState([])
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [isValidToken, setIsValidToken] = useState(false)
 
     const handlePesquisa = (e) => {
         setPesquisa(e.target.value)
@@ -28,19 +36,44 @@ export default () => {
         e.preventDefault()
         setFiltered(true)
         setFilteredList(courses.filter((course) => course.name.toLowerCase().includes(pesquisa.toLowerCase()) || course.description.toLowerCase().includes(pesquisa.toLowerCase())))
-        // setCourses((prevCourses) => prevCourses.filter((course) => course.name.toLowerCase().includes(pesquisa.toLowerCase()) || course.description.toLowerCase().includes(pesquisa.toLowerCase())))
     }
 
     const [courses, setCourses] = useState([])
 
     useEffect(()=> {
+
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+            alert('Faça login para visualizar os cursos')
+            navigate('/entrar')
+
+        }
+
+        setIsValidToken(true)
+
         const loadCourses = async() => {
-            const response = await axios.get(url)
-            setCourses(response.data)
+            try {
+                const response = await axios.get(url + 'course', {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // ou qualquer formato necessário para o token
+                      }
+                })
+                setIsLoading(false)
+                setCourses(response.data)
+            } catch (error) {
+                if (error.response && error.response.status == 401){
+                    alert('Sua sessão expirou, faça login novamente.')
+                    navigate('/entrar')
+                } else {
+                    console.error('Erro ao carregar cursos: ', error)
+                }
+            }
+            
         }
 
         loadCourses()
-    }, [])
+    }, [courses])
 
     return (
         <>
@@ -61,19 +94,23 @@ export default () => {
 
             <div className="container-card-courses">
                 {
-                    !filtered? courses?.map((course) => {
-                        return (
-                            <div key={course.id}>
-                                <CourseCard textbtn='Ir para curso' title={course.name} text={course.description} courseId={course.id}/>
-                            </div>
-                        )
-                    }) : filteredList.map((course) => {
-                        return (
-                            <div key={course.id}>
-                                <CourseCard textbtn='Ir para curso' title={course.name} text={course.description} courseId={course.id}/>
-                            </div>
-                        )
-                    })
+                    !isLoading? (
+                        !filtered? courses?.map((course) => {
+                            return (
+                                <div key={course.id}>
+                                    <CourseCard textbtn='Ir para curso' title={course.name} text={course.description} courseId={course.id}/>
+                                </div>
+                            )
+                        }) : filteredList?.map((course) => {
+                            return (
+                                <div key={course.id}>
+                                    <CourseCard textbtn='Ir para curso' title={course.name} text={course.description} courseId={course.id}/>
+                                </div>
+                            )
+                        })
+                    ):(
+                        <Spinner/>
+                    )
                 }
             </div>
         </>

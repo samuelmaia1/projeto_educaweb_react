@@ -2,6 +2,10 @@
     margin-top: 32px;
 }
 
+select{
+    margin-bottom: 1rem;
+}
+
 span{
     text-decoration: underline;
 }
