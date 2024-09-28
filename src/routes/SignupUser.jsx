@@ -22,7 +22,6 @@ export default () => {
     
     function handleName(e) {
         setFirstame(e.target.value)
-        console.log(firstName)
     }
 
     function handleLastName(e) {
@@ -43,7 +42,6 @@ export default () => {
 
     const formSubmit = async (e) => {
         e.preventDefault()
-        console.log(url + 'student/register')
         const response = await fetch(url + 'student/register', {
             method: 'POST',
             headers: {

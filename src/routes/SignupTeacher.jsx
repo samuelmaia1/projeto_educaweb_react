@@ -10,11 +10,12 @@ import {Link} from 'react-router-dom'
 
 export default () => {
 
-    const url = 'http://localhost:8081/api/instructor/register'
+    const url = import.meta.env.VITE_API_URL
 
     const [firstname, setFirstname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [login, setLogin] = useState('')
 
     const handleFirstname = (e) => {
         setFirstname(e.target.value)
@@ -27,17 +28,35 @@ export default () => {
     const handlePassword = (e) => {
         setPassword(e.target.value)
     }
+
+    const handleLogin  = (e) => {
+        setLogin(e.target.value)
+    }
     
     const formSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await axios.post(url, {
-            name: firstname,   
-            email,
-            password,
+        const response = await fetch(url + 'instructor/register', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                login: login,
+                email: email,
+                name: firstname,
+                password: password, 
+            })
         })
 
-        console.log(response.data)
+        if (response.ok){
+            alert('Conta criada com sucesso! Prossiga para login.')
+            navigate('/entrar')
+        } 
+        else {
+            const data = await response.json()
+            alert(data.message)
+        }
     }
 
     return (
@@ -66,6 +85,7 @@ export default () => {
                 <h2 className='form-title'>Cadastre-se</h2>
                 <InputFormSignup name='firstname' placeholder='Fulano' label='Nome: ' onChange={handleFirstname} value={firstname}/> 
                 <InputFormSignup name='email' placeholder='fulano@email.com' label='E-mail: ' onChange={handleEmail} value={email}/>
+                <InputFormSignup name='login' placeholder='fulano' label='Login: ' onChange={handleLogin} value={login}/>
                 <InputFormSignup name='password' placeholder='fulano1234@' label='Senha: ' onChange={handlePassword} value={password} type="password"/>
                 <Button colorScheme='teal' variant='solid' type='submit'>
                     Cadastrar
