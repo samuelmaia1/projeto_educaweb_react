@@ -4,15 +4,12 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 import LoginBtn from '../components/LoginBtn/LoginBtn'
 import Logo from '../components/Logo/Logo'
 import Navbar from '../components/Navbar/Navbar'
+import { Header } from '../components/Header/Header'
 
 export default () => {
     return (
         <>
-            <header className="header">
-                <Logo/>
-                <Navbar/>
-                <LoginBtn/>
-            </header>
+            <Header/>
 
             <h2 className='options-title'>Como deseja se cadastrar?</h2>
 

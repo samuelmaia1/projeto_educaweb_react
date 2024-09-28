@@ -56,14 +56,6 @@ function App() {
 
       <Header/>
 
-      {/* <header className='header'>
-        <Logo/>
-        <Navbar/>
-        {
-          !validToken? <LoginBtn/> : <AccBtn userName='Minha conta'></AccBtn>
-        }
-      </header> */}
-
       <main className="main-content">
         <h1 className="main-title">
           Transformando vidas através da educação e <GradientText text='tecnologia'/>

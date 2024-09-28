@@ -8,6 +8,7 @@ import axios from 'axios'
 import './Signup.css'
 import {Link} from 'react-router-dom'
 import { Spinner } from '../components/Spinner/Spinner'
+import { Header } from '../components/Header/Header'
 
 export default () => {
 
@@ -104,11 +105,7 @@ export default () => {
     }
     return (
         <>
-            <header className="header">
-                <Logo/>
-                <Navbar/>
-                <LoginBtn/>
-            </header>
+            <Header/>
 
             <h2 className='options-title'>Como deseja se cadastrar?</h2>
 
