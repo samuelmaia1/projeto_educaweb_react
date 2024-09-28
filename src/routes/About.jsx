@@ -2,17 +2,14 @@ import Navbar from "../components/Navbar/Navbar"
 import Logo from "../components/Logo/Logo"
 import LoginBtn from "../components/LoginBtn/LoginBtn"
 import './About.css'
+import { Header } from "../components/Header/Header"
 
 export default () => {
 
 
     return (
         <>
-            <header className="header">
-                <Logo/>
-                <Navbar/>
-                <LoginBtn/>
-            </header>
+            <Header/>
 
             <main className="main-content">
                 <section>

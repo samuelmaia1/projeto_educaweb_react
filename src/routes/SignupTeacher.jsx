@@ -7,6 +7,7 @@ import {Button} from '@chakra-ui/react'
 import axios from 'axios'
 import './Signup.css'
 import {Link} from 'react-router-dom'
+import { Header } from '../components/Header/Header'
 
 export default () => {
 
@@ -61,11 +62,7 @@ export default () => {
 
     return (
         <>
-            <header className="header">
-                <Logo/>
-                <Navbar/>
-                <LoginBtn/>
-            </header>
+            <Header/>
 
             <h2 className='options-title'>Como deseja se cadastrar?</h2>
 

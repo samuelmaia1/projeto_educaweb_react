@@ -11,6 +11,7 @@ import BtnLink from './components/BtnLink/BtnLink.jsx'
 import { Box } from '@chakra-ui/react'
 import {Link, useNavigate} from 'react-router-dom'
 import AccBtn from './components/AccBtn/AccBtn.jsx'
+import { Header } from './components/Header/Header.jsx'
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
 
         const response = await axios.post(url + 'auth/validatetoken',{}, {
           headers: {
-              'Authorization': `Bearer ${token}` // ou qualquer formato necessário para o token
+              'Authorization': `Bearer ${token}`
           }
         })
 
@@ -48,17 +49,20 @@ function App() {
 
     validToken()
 
-  }, [])
+  }, [validToken])
 
   return (
     <>
-      <header className='header'>
+
+      <Header/>
+
+      {/* <header className='header'>
         <Logo/>
         <Navbar/>
         {
           !validToken? <LoginBtn/> : <AccBtn userName='Minha conta'></AccBtn>
         }
-      </header>
+      </header> */}
 
       <main className="main-content">
         <h1 className="main-title">
