@@ -11,6 +11,7 @@ import { Button } from "@chakra-ui/react"
 import { ButtonGroup } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import {Spinner} from "../components/Spinner/Spinner"
+import AccBtn from '../components/AccBtn/AccBtn'
 
 export default () => {
 
@@ -80,7 +81,10 @@ export default () => {
             <header className="header">
                 <Logo/>
                 <Navbar/>
-                <LoginBtn/>
+                {
+                    !isValidToken? <LoginBtn/> : <AccBtn/>
+                }
+                
             </header>
 
             <h1 className="title-courses-page">Nossos cursos</h1>

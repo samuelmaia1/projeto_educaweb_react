@@ -10,7 +10,7 @@ import './Signup.css'
 import {Link} from 'react-router-dom'
 export default () => {
 
-    const url = import.meta.env.VITE_API_LOCAL_URL
+    const url = import.meta.env.VITE_API_URL
 
     const navigate = useNavigate()
 
@@ -43,6 +43,7 @@ export default () => {
 
     const formSubmit = async (e) => {
         e.preventDefault()
+        console.log(url + 'student/register')
         const response = await fetch(url + 'student/register', {
             method: 'POST',
             headers: {
@@ -62,7 +63,8 @@ export default () => {
             navigate('/entrar')
         } 
         else {
-            alert('Erro ao criar conta. E-mail já existente.')
+            const data = await response.json()
+            alert(data.message)
         }
     }
 

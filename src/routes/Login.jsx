@@ -33,7 +33,6 @@ export default () => {
     }
 
     const handleChange = (e) => {
-        console.log(e.target.value)
         setSelectedOption(e.target.value)
     }
 
@@ -55,13 +54,17 @@ export default () => {
 
         localStorage.setItem('token', data.token)
 
-        console.log(data)
+        localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole}))
 
-        if (data.ok){
+        if (response.status == 200){
             navigate('/cursos')
+        } 
+        else if (response.status == 401){
+            alert(data.message)
         }
-
-
+        else if (response.status == 404){
+            alert(data.message)
+        }
         
     }
 
