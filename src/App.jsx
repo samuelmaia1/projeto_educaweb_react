@@ -69,10 +69,10 @@ function App() {
         </p>
 
         <Box className='container-card'>
-          <Card title='Excel' text='Desenvolva a capacidade de criar planilhas incríveis e dinâmicas para se destacar nas vagas!' textbtn='Conhecer curso'/> 
-          <Card title='JavaScript' text='Desenvolva funcionalidades incríveis para implementar no seu site e deixá-lo muito mais dinâmico' textbtn='Conhecer curso'/> 
-          <Card title='HTML e CSS' text='Dê seus primeiros sites na construção de sites incríveis, com uma gama de estilos e animações' textbtn='Conhecer curso'/> 
-          <Card title='SQL' text='Armazene, trate e gerencie grandes volumes de dados, criando DataBases SQL para aplicações.' textbtn='Conhecer curso'/> 
+          <Card title='Cursos gratuitos' text='Desenvolva sua carreira adquindo conhecimentos com nossos cursos 100% gratuitos!' textbtn='Conhecer cursos'/> 
+          <Card title='Ofertas de emprego' text='Enconte ótimas oportunidades para entrar no mercado de trabalho e alcançar seu sucesso!' textbtn='Encontrar vagas'/> 
+          <Card title='Seja voluntário' text='Se seu sonho (assim como o nosso) é compartilhar conhecimento e contribuir, este é o lugar certo para isso!' textbtn='Professor voluntário'/> 
+          <Card title='Aumente a família' text='Publique vagas de emprego e entre em contato com os candidatos, um a mais na família é sempre bom!' textbtn='Publicar vaga'/> 
         </Box>
 
         {
