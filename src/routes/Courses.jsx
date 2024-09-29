@@ -44,37 +44,53 @@ export default () => {
 
     useEffect(()=> {
 
-        const token = localStorage.getItem('token')
+        const fetchData = async () => {
+            const token = localStorage.getItem('token')
 
-        if (!token) {
-            alert('Faça login para visualizar os cursos')
-            navigate('/entrar')
-
-        }
-
-        setIsValidToken(true)
-
-        const loadCourses = async() => {
-            try {
-                const response = await axios.get(url + 'course', {
-                    headers: {
-                        'Authorization': `Bearer ${token}` // ou qualquer formato necessário para o token
-                      }
-                })
-                setIsLoading(false)
-                setCourses(response.data)
-            } catch (error) {
-                if (error.response && error.response.status == 401){
-                    alert('Sua sessão expirou, faça login novamente.')
-                    navigate('/entrar')
-                } else {
-                    console.error('Erro ao carregar cursos: ', error)
-                }
+            if (!token) {
+                alert('Faça login para visualizar os cursos')
+                navigate('/entrar')
             }
-            
+
+            try{
+                const response = await axios.post(url + 'auth/validatetoken',{}, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+
+                if (response.status === 200) setIsValidToken(true)
+            } catch (error){
+                alert("Login expirado, faça login novamente.")
+                navigate('/entrar')
+            }
+
+            const loadCourses = async() => {
+                try {
+                    const response = await axios.get(url + 'course', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    setIsLoading(false)
+                    setCourses(response.data)
+                } catch (error) {
+                    if (error.response && error.response.status == 401){
+                        alert('Sua sessão expirou, faça login novamente.')
+                        navigate('/entrar')
+                    } else {
+                        console.error('Erro ao carregar cursos: ', error)
+                    }
+                }
+                
+            }
+
+            loadCourses()
         }
 
-        loadCourses()
+        fetchData()
+
+        
     }, [courses])
 
     return (

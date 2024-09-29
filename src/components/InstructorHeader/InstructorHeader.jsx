@@ -1,5 +1,5 @@
 import Logo from '../Logo/Logo'
-import './Navbar.css'
+import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 
 export function InstructorHeader(){

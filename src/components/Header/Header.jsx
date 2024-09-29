@@ -5,12 +5,15 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import AccBtn from "../AccBtn/AccBtn"
+import {InstructorHeader} from "../InstructorHeader/InstructorHeader"
 
 export function Header(){
 
     const url = import.meta.env.VITE_API_URL
 
     const [validToken, setValidToken] = useState(false)
+
+    let user = JSON.parse(localStorage.getItem('user'))
 
     const navigate = useNavigate()
 
@@ -30,8 +33,6 @@ export function Header(){
               }
             })
     
-            console.log(response.data)
-    
             if (response.status == 200){
               setValidToken(true)
             }
@@ -48,7 +49,15 @@ export function Header(){
         <>
             <header className="header">
                 <Logo/>
-                <Navbar/>
+                {
+                  user && user.role === 'INSTRUCTOR' &&
+                  <>
+                    <InstructorHeader/>
+                  </>
+                }
+                {
+                  !user && <Navbar/>
+                }
                 {
                     !validToken? <LoginBtn/> : <AccBtn userName='Minha conta'></AccBtn>
                 }

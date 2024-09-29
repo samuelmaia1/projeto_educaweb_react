@@ -89,7 +89,6 @@ export default () => {
 
     async function formSubmit(e){
         e.preventDefault()
-        console.log(city)
         const response = await axios.post(urlRegister, {
             name: companyName,
             email: email,
