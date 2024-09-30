@@ -8,7 +8,7 @@ export function InstructorHeader(){
             <nav className='navbar'>
                 <Link to='/' className='navbar-link'>Página inicial</Link>
                 <Link to='/cursos' className='navbar-link'>Cursos</Link>
-                <Link to='/cursos' className='navbar-link'>Criar curso</Link>
+                <Link to='/cursos/criar' className='navbar-link'>Criar curso</Link>
                 <Link to='/sobre' className='navbar-link'>Sobre nós</Link>
             </nav>
         </>

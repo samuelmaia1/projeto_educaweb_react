@@ -54,7 +54,7 @@ export default () => {
 
         localStorage.setItem('token', data.token)
 
-        localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole}))
+        localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole, userId: data.userId}))
 
         if (response.status == 200){
             navigate('/cursos')

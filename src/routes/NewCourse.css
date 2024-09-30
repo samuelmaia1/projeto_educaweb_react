@@ -1,0 +1,23 @@
+.principal-content{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 10rem 0 10rem;
+    align-items: center;
+    margin-top: 0;
+}
+
+.principal-title{
+    margin-bottom: 0;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.container-input-form{
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+form{
+    width: 100%;
+    display: flex;
+}
