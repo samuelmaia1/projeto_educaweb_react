@@ -65,10 +65,10 @@ function App() {
         </p>
 
         <Box className='container-card'>
-          <Card title='Cursos gratuitos' text='Desenvolva sua carreira adquindo conhecimentos com nossos cursos 100% gratuitos!' textbtn='Conhecer cursos'/> 
+          <Card title='Cursos gratuitos' text='Desenvolva sua carreira adquindo conhecimentos com nossos cursos 100% gratuitos!' textbtn='Conhecer cursos' path='/cursos'/> 
           <Card title='Ofertas de emprego' text='Enconte ótimas oportunidades para entrar no mercado de trabalho e alcançar seu sucesso!' textbtn='Encontrar vagas'/> 
-          <Card title='Seja voluntário' text='Se seu sonho (assim como o nosso) é compartilhar conhecimento e contribuir, este é o lugar certo para isso!' textbtn='Professor voluntário'/> 
-          <Card title='Aumente a família' text='Publique vagas de emprego e entre em contato com os candidatos, um a mais na família é sempre bom!' textbtn='Publicar vaga'/> 
+          <Card title='Seja voluntário' text='Se seu sonho (assim como o nosso) é compartilhar conhecimento e contribuir, este é o lugar certo para isso!' textbtn='Professor voluntário' to='/cadastro'/> 
+          <Card title='Aumente a família' text='Publique vagas de emprego e entre em contato com os candidatos, um a mais na família é sempre bom!' textbtn='Publicar vaga' to='/cadastro'/> 
         </Box>
 
         {
