@@ -1,4 +1,4 @@
-import { Button, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormLabel, Input, Select, Textarea } from "@chakra-ui/react";
 import { Header } from "../components/Header/Header";
 //import InputFormSignup from "../components/InputFormSignup/InputFormSignup";
 import axios from "axios";
@@ -8,6 +8,7 @@ import imagem from '../assets/pessoas-lendo-livros-para-ilustracao-vetorial-de-e
 import { useNavigate } from "react-router-dom";
 import { useValidateUser } from "../hooks/useValidateUser";
 import { useCreateCourse } from "../hooks/useCreateCourse";
+// import { Textarea } from "@chakra-ui/react";
 
 export function NewCourse(){
 
@@ -68,19 +69,25 @@ export function NewCourse(){
                 <form onSubmit={formSubmit}>
                     <div className="container-input-form">
                         <FormLabel>Título do curso</FormLabel>
-                        <Input placeholder={'Curso de JavaScript'} name={'name'} value={state.name} onChange={handleChange} className='input' variant='filled'/>
+                        <Input isRequired={true} placeholder={'Curso de JavaScript'} name={'name'} value={state.name} onChange={handleChange} className='input' variant='filled'/>
                     </div>
                     <div className="container-input-form">
                         <FormLabel>Categoria</FormLabel>
-                        <Input placeholder={'Desenvolvimento'} name={'category'} value={state.category} onChange={handleChange} className='input' variant='filled'/>
+                        <Select isRequired={true} placeholder={'Selecione uma categoria'} name={'category'} value={state.category} onChange={handleChange} className='input' variant='filled'>
+                            <option value="Desenvolvimento">Desenvolvimento</option>
+                            <option value="Finanças">Finanças</option>
+                            <option value="Ensino Médio">Ensino Médio</option>
+                            <option value="Segurança">Segurança</option>
+                            <option value="Office">Office</option>
+                        </Select>
                     </div>
                     <div className="container-input-form">
                         <FormLabel>Descrição</FormLabel>
-                        <Input placeholder={'Curso de JavaScript para iniciantes'} name={'description'} value={state.description} onChange={handleChange} className='input' variant='filled'/>
+                        <Textarea isRequired={true} placeholder={'Curso de JavaScript para iniciantes'} name={'description'} value={state.description} onChange={handleChange} className='input' variant='filled'/>
                     </div>
                     <div className="container-input-form">
                         <FormLabel>URL</FormLabel>
-                        <Input placeholder={'www.youtube.com/...'}  name={'url'} value={state.url} onChange={handleChange} className='input' variant='filled'/>
+                        <Input isRequired={true} placeholder={'www.youtube.com/...'}  name={'url'} value={state.url} onChange={handleChange} className='input' variant='filled'/>
                     </div>
                     <Button colorScheme="teal" type="submit">Criar curso 🚀</Button>
                 </form>

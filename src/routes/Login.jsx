@@ -52,11 +52,11 @@ export default () => {
 
         const data = await response.json()
 
-        localStorage.setItem('token', data.token)
-
-        localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole, userId: data.userId}))
-
         if (response.status == 200){
+            localStorage.setItem('token', data.token)
+
+            localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole, userId: data.userId}))
+            
             navigate('/cursos')
         } 
         else if (response.status == 401){
