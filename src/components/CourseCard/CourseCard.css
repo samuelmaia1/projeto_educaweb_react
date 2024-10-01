@@ -4,4 +4,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: absolute;
+    top: 0;
 }
