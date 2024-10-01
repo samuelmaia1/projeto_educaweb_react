@@ -64,7 +64,8 @@ export function NewCourse(){
             const response = await fetch(url + `course/register/` + user.userId, {
                 method: 'POST',
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body:JSON.stringify({
                     name: state.name,
@@ -73,6 +74,8 @@ export function NewCourse(){
                     category: state.category
                 })
             })
+
+            if (response.status === 201) alert('Curso criado com sucesso!')
         }
     }
 

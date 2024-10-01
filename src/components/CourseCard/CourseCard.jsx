@@ -12,9 +12,15 @@ export default ({title, text, textbtn, courseId}) => {
                 </CardHeader>
 
                 <CardBody display='flex' justifyContent='center' alignItems='center' flexDir='column'>
-                    <p>{text}</p>
+                    <p className='card-description' style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>{text}</p>
                     <Link to={urlDestino}>
-                        <Button size='md' marginTop='5' colorScheme='teal'>{textbtn}</Button>
+                        <Button size='md' marginTop='5' colorScheme='teal'>{textbtn} ▶️</Button>
                     </Link>
                 </CardBody>
 

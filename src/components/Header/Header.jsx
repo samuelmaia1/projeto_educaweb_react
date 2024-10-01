@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import AccBtn from "../AccBtn/AccBtn"
 import {InstructorHeader} from "../InstructorHeader/InstructorHeader"
+import {StudentHeader} from '../StudentHeader/StudentHeader'
 
 export function Header(){
 
@@ -53,6 +54,12 @@ export function Header(){
                   user && user.role === 'INSTRUCTOR' &&
                   <>
                     <InstructorHeader/>
+                  </>
+                }
+                {
+                  user && user.role === 'STUDENT' &&
+                  <>
+                    <StudentHeader/>
                   </>
                 }
                 {

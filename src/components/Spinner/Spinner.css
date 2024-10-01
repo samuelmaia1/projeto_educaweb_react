@@ -7,6 +7,11 @@
     }
 }
 
+.container-spinner{
+    display: flex;
+    justify-content: center;
+}
+
 .spinner{
     width: 2rem;
     height: 2rem;

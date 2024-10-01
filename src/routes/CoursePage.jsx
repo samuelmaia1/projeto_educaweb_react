@@ -6,6 +6,10 @@ import Logo from '../components/Logo/Logo'
 import LoginBtn from "../components/LoginBtn/LoginBtn"
 import { useSearchParams } from "react-router-dom"
 import { Header } from "../components/Header/Header"
+import { Spinner } from "../components/Spinner/Spinner"
+import { Link } from "react-router-dom"
+import './CoursePage.css'
+import { Button } from "@chakra-ui/react"
 
 export default() => {
     const [searchParams] = useSearchParams()
@@ -13,7 +17,6 @@ export default() => {
 
     const url = import.meta.env.VITE_API_URL
 
-    const [courses, setCourses] = useState([])
     const [course, setCourse] = useState({})
     const [loading, setLoading] = useState(true)
     const [videoId, setVideoId] = useState('')
@@ -36,6 +39,7 @@ export default() => {
                 if (course){
                     setCourse(course)  
                     setVideoId(getVideoId(course.url))
+                    setLoading(false)
                 }
             }
             catch (error){
@@ -47,9 +51,29 @@ export default() => {
     }, [courseId])
 
     const getVideoId = (url) => {
-        const parts = url.split('watch?v=')
-        if (parts.length > 1){
-            return parts[1].substring(0, 11)
+        if (url.includes('watch?v=')){
+            const parts = url.split('watch?v=')
+            if (parts.length > 1){
+                return parts[1].substring(0, 11)
+            }
+            return null
+        }
+
+        if (url.includes('youtu.be/'))
+        {
+            const parts = url.split('youtu.be/')
+            if (parts.length > 1){
+                return parts[1].substring(0, 11)
+            }
+            return null
+        }
+
+        if (url.includes('embed/')){
+            const parts = url.split('embed/')
+            if (parts.length > 1){
+                return parts[1].substring(0, 11)
+            }
+            return null
         }
         return null
     }
@@ -57,8 +81,32 @@ export default() => {
     return (
         <>
            <Header/>
-            <h1>Bem vindo ao curso de {course.name}</h1>
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+           {
+            loading? 
+                <Spinner/> : 
+                <>
+                    <h1 className="title-video">Bem vindo ao curso de {course.name}</h1>
+                    <div className="container-principal">
+                        <iframe 
+                        width="840" 
+                        height="473" 
+                        src={`https://www.youtube.com/embed/${videoId}`} 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                        </iframe>
+                        <div className="info">
+                            <h2 className="instructor-name"><span className="span-strong">Professor:</span> {course.instructor.name}</h2>
+                            <p>Descrição: {course.description}</p>
+                            <p>Categoria: {course.category}</p>
+                            <p>Assistir no YouTube: <a href={course.url} target="_blank">Acessar</a></p>
+                            <Button colorScheme="teal" className="btn-concluido">Concluído ✅</Button>
+                        </div>
+                    </div>
+                </>
+           }
+            
         </>
     )
 }
