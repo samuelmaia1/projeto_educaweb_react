@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import './NewCourse.css'
 import imagem from '../assets/pessoas-lendo-livros-para-ilustracao-vetorial-de-estudo_74855-4807.avif'
 import { useNavigate } from "react-router-dom";
+import { useValidateUser } from "../hooks/useValidateUser";
+import { useCreateCourse } from "../hooks/useCreateCourse";
 
 export function NewCourse(){
 
     const navigate = useNavigate()
-
-    const url = import.meta.env.VITE_API_URL
 
     const token = localStorage.getItem('token')
 
@@ -23,24 +23,9 @@ export function NewCourse(){
             navigate('/entrar')
         }
 
-        validateUser()
+        useValidateUser()
 
     })
-
-    const validateUser = async () => {
-        try{
-            const response = await axios.post(url + 'auth/validatetoken',{}, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-
-            if (response.status === 200) return true
-        } catch (error){
-            alert("Login expirado, faça login novamente.")
-            navigate('/entrar')
-        }
-    }
 
     const [state, setState] = useState({
         name: '',
@@ -60,22 +45,15 @@ export function NewCourse(){
     const formSubmit = async (e) => {
         e.preventDefault()
 
-        if (validateUser()){
-            const response = await fetch(url + `course/register/` + user.userId, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body:JSON.stringify({
-                    name: state.name,
-                    description: state.description,
-                    url: state.url,
-                    category: state.category
-                })
-            })
+        const course = {
+            name: state.name,
+            description: state.description,
+            url: state.url,
+            category: state.category
+        }
 
-            if (response.status === 201) alert('Curso criado com sucesso!')
+        if (useValidateUser()){
+            useCreateCourse({course, user, token})
         }
     }
 

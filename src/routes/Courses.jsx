@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom"
 import {Spinner} from "../components/Spinner/Spinner"
 import AccBtn from '../components/AccBtn/AccBtn'
 import { Header } from "../components/Header/Header"
+import { useValidateUser } from "../hooks/useValidateUser"
 
 export default () => {
 
@@ -52,18 +53,7 @@ export default () => {
                 navigate('/entrar')
             }
 
-            try{
-                const response = await axios.post(url + 'auth/validatetoken',{}, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-
-                if (response.status === 200) setIsValidToken(true)
-            } catch (error){
-                alert("Login expirado, faça login novamente.")
-                navigate('/entrar')
-            }
+            useValidateUser()
 
             const loadCourses = async() => {
                 try {
