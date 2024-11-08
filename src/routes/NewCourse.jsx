@@ -8,9 +8,12 @@ import imagem from '../assets/pessoas-lendo-livros-para-ilustracao-vetorial-de-e
 import { useNavigate } from "react-router-dom";
 import { useValidateUser } from "../hooks/useValidateUser";
 import { useCreateCourse } from "../hooks/useCreateCourse";
+import { Spinner } from "../components/Spinner/Spinner";
 // import { Textarea } from "@chakra-ui/react";
 
 export function NewCourse(){
+
+    const [creating, setCreating] = useState(false)
 
     const navigate = useNavigate()
 
@@ -45,6 +48,8 @@ export function NewCourse(){
 
     const formSubmit = async (e) => {
         e.preventDefault()
+        
+        setCreating(true)
 
         const course = {
             name: state.name,
@@ -56,6 +61,8 @@ export function NewCourse(){
         if (useValidateUser()){
             useCreateCourse({course, user, token})
         }
+
+        setCreating(false)
     }
 
     return (
@@ -89,7 +96,7 @@ export function NewCourse(){
                         <FormLabel>URL</FormLabel>
                         <Input isRequired={true} placeholder={'www.youtube.com/...'}  name={'url'} value={state.url} onChange={handleChange} className='input' variant='filled'/>
                     </div>
-                    <Button colorScheme="teal" type="submit">Criar curso 🚀</Button>
+                    <Button colorScheme="teal" type="submit">Criar curso 🚀 {creating && <Spinner/>}</Button>
                 </form>
                 <img src={imagem} alt="" />
 

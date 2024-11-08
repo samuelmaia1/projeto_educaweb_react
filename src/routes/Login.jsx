@@ -57,7 +57,7 @@ export default () => {
 
             localStorage.setItem('user', JSON.stringify({userName: data.userName, role: data.userRole, userId: data.userId}))
             
-            navigate('/cursos')
+            navigate('/')
         } 
         else if (response.status == 401){
             alert(data.message)

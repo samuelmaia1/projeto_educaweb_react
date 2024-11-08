@@ -9,7 +9,14 @@ export default ({title, text, textbtn, courseId}) => {
         <>
             <Card className='card' width={350} minHeight={220} title={title} display='flex' justifyContent='center' alignItems='center' flexDir='column' courseId={courseId} position='relative'>
                 <CardHeader p='4'>
-                    <Heading className='card-title' size='md'>{title}</Heading>
+                    <Heading className='card-title' size='md' maxWidth="100%" style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap'
+                    }}>{title}</Heading>
                 </CardHeader>
 
                 <CardBody display='flex' justifyContent='start' alignItems='center' flexDir='column'>

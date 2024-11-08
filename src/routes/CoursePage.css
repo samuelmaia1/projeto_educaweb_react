@@ -12,6 +12,11 @@
     font-size: 2rem;
 }
 
+.course-name{
+    font-size: 1.75rem;
+    margin-top: 1rem;
+}
+
 .info{
     display: flex;
     flex-direction: column;

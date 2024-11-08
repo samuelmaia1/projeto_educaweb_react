@@ -10,6 +10,7 @@ import { Spinner } from "../components/Spinner/Spinner"
 import { Link } from "react-router-dom"
 import './CoursePage.css'
 import { Button } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 export default() => {
     const [searchParams] = useSearchParams()
@@ -85,19 +86,22 @@ export default() => {
             loading? 
                 <Spinner/> : 
                 <>
-                    <h1 className="title-video">Bem vindo ao curso de {course.name}</h1>
                     <div className="container-principal">
-                        <iframe 
-                        width="840" 
-                        height="473" 
-                        src={`https://www.youtube.com/embed/${videoId}`} 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                        </iframe>
+                        <Box>
+                            <iframe
+                            width="840"
+                            height="473"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                            </iframe>
+                            <h1 className="course-name"><span className="span-strong">{course.name}</span></h1>
+                            <h2>Instrutor: {course.instructor.name}</h2>
+                        </Box>
                         <div className="info">
-                            <h2 className="instructor-name"><span className="span-strong">Professor:</span> {course.instructor.name}</h2>
+                            <h2 className="instructor-name"><span className="span-strong">Professor: </span>{course.instructor.name}</h2>
                             <p>Descrição: {course.description}</p>
                             <p>Categoria: {course.category}</p>
                             <p>Assistir no YouTube: <a href={course.url} target="_blank">Acessar</a></p>

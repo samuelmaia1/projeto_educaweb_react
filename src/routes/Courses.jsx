@@ -87,11 +87,9 @@ export default () => {
         <>
             <Header/>
 
-            <h1 className="title-courses-page">Nossos cursos</h1>
-
             <form onSubmit={formSubmit}>
                 <div className="container-form">
-                    <InputFormSignup name='pesquisa' placeholder='Digite sua pesquisa' label='Pesquisar: ' onChange={handlePesquisa}/>
+                    <InputFormSignup name='pesquisa' placeholder='Pesquisar curso' label='Pesquisar: ' onChange={handlePesquisa}/>
                     <Button type="submit" colorScheme="teal">Pesquisar</Button>
                 </div>
             </form>
